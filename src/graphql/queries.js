@@ -11,6 +11,9 @@ query{
     emoji
     capital
     phone
+    states{
+      name
+    }
     continent{
       code
       name

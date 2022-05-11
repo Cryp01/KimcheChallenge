@@ -3,6 +3,7 @@ import { InMemoryCache, useQuery, ApolloClient } from "@apollo/client";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { CountriesQuery } from "./graphql/queries";
 import Country from "./components/Country";
+import Modal from "./components/Modal";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -16,11 +17,16 @@ const App = () => {
 
   const [filterMode, setFilterMode] = useState(true);
   const [countryInput, setCountryInput] = useState("");
+  const [modalshow, setModalshow] = useState(false);
+  const [currentCountry, setcurrentCountry] = useState({});
 
   if (loading) {
     return (
       <div className="flex w-screen h-screen items-center justify-center">
-        <img src="https://titulos.upea.bo/public/img/gif/loader__.gif" alt="loader" />
+        <img
+          src="https://titulos.upea.bo/public/img/gif/loader__.gif"
+          alt="loader"
+        />
       </div>
     );
   }
@@ -61,6 +67,8 @@ const App = () => {
     setFilterMode(type);
   };
 
+  document.body.style.overflow = modalshow ? 'hidden': 'scroll';
+
   return (
     <ApolloProvider client={client}>
       <div className="lg:w-1/2 w-full">
@@ -98,14 +106,27 @@ const App = () => {
               </button>
             </div>
             <div className="flex mt-10 flex-col ">
-              {Object.keys(dataFiltered).map((key) => {
+              {Object.keys(dataFiltered).map((group, index) => {
                 return (
-                  <div className="flex flex-col ">
-                    <span className="text-xl mb-2">{key !== "undefined" ? key:''}</span>
+                  <div className="flex flex-col " key={index}>
+                    <span className="text-xl mb-2">
+                      {group !== "undefined" ? group : ""}
+                    </span>
                     <div className="mx-2 flex flex-wrap">
-                    {dataFiltered[key].map((country) => {
-                      return <Country country={country} />;
-                    })}
+                      {dataFiltered[group].map((country, index) => {
+                        return (
+                          <div
+                          className="cursor-pointer"
+                          key={index}
+                            onClick={() => {
+                              setcurrentCountry(country);
+                              setModalshow(true);
+                            }}
+                          >
+                            <Country country={country} />
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 );
@@ -114,6 +135,7 @@ const App = () => {
           </div>
         </div>
       </div>
+      {modalshow && <Modal show={setModalshow} country={currentCountry} />}
     </ApolloProvider>
   );
 };

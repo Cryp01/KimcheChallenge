@@ -14,9 +14,9 @@ const Country = ({ country }) => {
       <span className="my-1 text-base">{country?.capital}</span>
       <span className="my-1 text-base">{country?.phone}</span>
       <div className="flex flex-wrap my-3 w-full justify-center items-center">
-        {country?.languages?.map((languague, key) => {
-          if(key < 4){
-          return <span className="p-2 text-xs rounded-3xl text-center justify-center bg-blue-600 m-1 text-white">
+        {country?.languages?.map((languague, index) => {
+          if(index < 4){
+          return <span className="p-2 text-xs rounded-3xl text-center justify-center bg-blue-600 m-1 text-white" key={index}>
             {languague?.name}
           </span>;
           }
