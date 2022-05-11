@@ -74,10 +74,10 @@ const App = () => {
                 setCountryInput(e.target.value);
               }}
             />
-            <div className="flex flex-row mt-10 items-center">
-              <span className="text-2xl mx-2">Group By: </span>
+            <div className="flex flex-col mt-10 items-center lg:flex-row">
+              <span className="text-2xl m-2 lg:my-0 lg:mx-2">Group By: </span>
               <button
-                className={`p-5 flex items-center justify-center  cursor-pointer mx-5 rounded-lg ${
+                className={`p-5 flex items-center justify-center  cursor-pointer mx-5 rounded-lg my-2 lg:my-0 ${
                   filterMode
                     ? "bg-blue-600 text-white"
                     : "bg-gray-200 text-black"
