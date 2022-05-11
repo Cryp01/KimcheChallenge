@@ -63,7 +63,7 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
-      <div className="lg:w-3/4 w-full">
+      <div className="lg:w-1/2 w-full">
         <div className="flex flex-col m-10">
           <span className="text-3xl">Country Search</span>
           <div className="flex flex-col mt-2">
