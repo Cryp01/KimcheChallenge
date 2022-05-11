@@ -1,7 +1,7 @@
 # Desafío para Software Engineers
 
 Nombre postulante: Alberto Josue Reyes Cespedes
-Link a la app en producción: [LINK DEL DEPLOY]
+Link a la app en producción: https://kimchechallenge.netlify.app/
 
 ## Instrucciones
 
