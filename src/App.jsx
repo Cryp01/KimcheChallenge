@@ -101,7 +101,7 @@ const App = () => {
               {Object.keys(dataFiltered).map((key) => {
                 return (
                   <div className="flex flex-col ">
-                    <span className="text-xl mb-2">{key ?? ''}</span>
+                    <span className="text-xl mb-2">{key !== "undefined" ? key:''}</span>
                     <div className="mx-2 flex flex-wrap">
                     {dataFiltered[key].map((country) => {
                       return <Country country={country} />;
